@@ -1,17 +1,13 @@
 services:
   - type: web
     name: document-chatbot
-    env: python
-    plan: starter
-    region: oregon  # Specify region for better performance
-    buildCommand: "pip install --no-cache-dir -r requirements.txt"
-    startCommand: "gunicorn --bind 0.0.0.0:$PORT -w 1 -k uvicorn.workers.UvicornWorker app.main:app --timeout 120 --max-requests 100 --max-requests-jitter 10"
+    # Tell Render to use Docker to solve the build issue
+    env: docker
+    plan: starter # Or your current plan
+    # Health check path
+    healthCheckPath: /health
     envVars:
       - key: HUGGINGFACEHUB_API_TOKEN
         sync: false
       - key: SECRET_KEY
         sync: false
-      - key: PYTHONPATH
-        value: /opt/render/project/src
-    # Health check configuration
-    healthCheckPath: /health
