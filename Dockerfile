@@ -21,5 +21,5 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 10000
 
-# Define the command to run your app
-CMD ["gunicorn", "-w", "1", "-k", "uvicorn.workers.UvicornWorker", "app.main:app", "--bind", "0.0.0.0:10000"]
+# Define the command to run your app with an increased timeout
+CMD ["gunicorn", "-w", "1", "-k", "uvicorn.workers.UvicornWorker", "app.main:app", "--bind", "0.0.0.0:10000", "--timeout", "120"]
