@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 
 class AskRequest(BaseModel):
     """Request model for the /ask endpoint."""
@@ -21,8 +21,8 @@ class Token(BaseModel):
     token_type: str
 
 class User(BaseModel):
-    """Pydantic model for user data (used in security)."""
+    """Pydantic model for user data (used in security), compatible with Pydantic v1."""
     username: str
-    email: str | None = None
-    full_name: str | None = None
-    disabled: bool | None = None
+    email: Optional[str] = None
+    full_name: Optional[str] = None
+    disabled: Optional[bool] = None

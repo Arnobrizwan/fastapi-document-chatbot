@@ -4,6 +4,7 @@ from typing import List
 from fastapi import FastAPI, UploadFile, File, HTTPException, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 from contextlib import asynccontextmanager
 from huggingface_hub import InferenceClient
 
