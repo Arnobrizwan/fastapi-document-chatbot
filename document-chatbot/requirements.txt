@@ -1,12 +1,15 @@
 fastapi
 uvicorn[standard]
+gunicorn
 pydantic
 python-multipart
 langchain
-langchain-community  
+langchain-community
 sentence-transformers
 faiss-cpu
 PyPDF2
 python-jose[cryptography]
-passlib[bcrypt]
+passlib
+bcrypt==3.2.2
 python-dotenv
+huggingface-hub
