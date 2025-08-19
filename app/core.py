@@ -2,8 +2,7 @@ from typing import List
 from fastapi import UploadFile, HTTPException
 from PyPDF2 import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-# LangChainDeprecationWarning: Updated imports
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 
 def get_text_from_files(files: List[UploadFile]) -> str:
@@ -46,8 +45,9 @@ def get_vector_store(text_chunks: List[str]):
     if not text_chunks:
         raise ValueError("Cannot create vector store from empty text chunks.")
         
-    # Using a popular, lightweight sentence transformer model
-    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    # FIX: Use a much smaller model to conserve memory on Render
+    # This also uses the new, non-deprecated HuggingFaceEmbeddings class
+    embeddings = HuggingFaceEmbeddings(model_name="paraphrase-MiniLM-L3-v2")
     
     # Create the vector store
     vector_store = FAISS.from_texts(texts=text_chunks, embedding=embeddings)

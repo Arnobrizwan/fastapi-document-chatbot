@@ -13,3 +13,4 @@ passlib
 bcrypt==3.2.2
 python-dotenv
 huggingface-hub
+langchain-huggingface
