@@ -18,8 +18,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 10000
+# Expose the port Hugging Face Spaces uses
+EXPOSE 7860
 
-# Define the command to run your app with an increased timeout
-CMD ["gunicorn", "-w", "1", "-k", "uvicorn.workers.UvicornWorker", "app.main:app", "--bind", "0.0.0.0:10000", "--timeout", "120"]
+# Define the command to run your app on the correct port
+CMD ["gunicorn", "-w", "1", "-k", "uvicorn.workers.UvicornWorker", "app.main:app", "--bind", "0.0.0.0:7860", "--timeout", "120"]
